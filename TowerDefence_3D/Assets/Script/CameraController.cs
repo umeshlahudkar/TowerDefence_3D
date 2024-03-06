@@ -21,9 +21,6 @@ public class CameraController : MonoBehaviour
     private float vertical;
 
     private Vector3 movementVector;
-
-    public Transform cube;
-
   
     private void Start()
     {
@@ -76,11 +73,14 @@ public class CameraController : MonoBehaviour
 
     private void ClampCamera()
     {
-        float height = GetHeight();
-        float width = height * mainCamera.aspect;
+        //float height = GetHeight();
+        //float width = height * mainCamera.aspect;
 
-        movementVector.x = Mathf.Clamp(movementVector.x, minBound.x + width, maxBound.x - width);
-        movementVector.z = Mathf.Clamp(movementVector.z, minBound.y + height, maxBound.y - height);
+        //movementVector.x = Mathf.Clamp(movementVector.x, minBound.x + width, maxBound.x - width);
+        //movementVector.z = Mathf.Clamp(movementVector.z, minBound.y + height, maxBound.y - height);
+
+        movementVector.x = Mathf.Clamp(movementVector.x, minBound.x , maxBound.x );
+        movementVector.z = Mathf.Clamp(movementVector.z, minBound.y , maxBound.y);
 
         thisTransform.position = movementVector;
     }
