@@ -16,13 +16,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector2 minBound;
     [SerializeField] private Vector2 maxBound;
 
-    private float cameraDistance;
-
     private float scrollValue;
     private float horizontal;
     private float vertical;
 
     private Vector3 movementVector;
+
+    public Transform cube;
 
   
     private void Start()
@@ -30,7 +30,6 @@ public class CameraController : MonoBehaviour
         mainCamera = gameObject.GetComponent<Camera>();
         thisTransform = gameObject.transform;
         movementVector = thisTransform.position;
-        cameraDistance = Mathf.Abs(Mathf.Abs(maxBound.y) + Mathf.Abs(minBound.y)) / 2;
     }
 
     private void Update()
@@ -55,7 +54,7 @@ public class CameraController : MonoBehaviour
     {
         if(!mainCamera.orthographic)
         {
-            return cameraDistance * Mathf.Tan(mainCamera.fieldOfView * 0.5f * Mathf.Deg2Rad);
+            return thisTransform.position.y * Mathf.Tan(mainCamera.fieldOfView * 0.5f * Mathf.Deg2Rad);
         }
 
         return mainCamera.orthographicSize;
